@@ -8,10 +8,15 @@
 </head>
 <body>
 
-<%= link_to 'Login', new_session_path %>
-<%= link_to 'Sign up', new_user_path %>
+<% if signed_in? %>
+  <%= link_to 'Sign out', log_out_path %>
+<% else %>
+  <%= link_to 'Login', new_session_path %>
+  <%= link_to 'Sign up', new_user_path %>
+<% end %>
 
 <%= yield %>
 
+<%= debug(params) %>
 </body>
 </html>
