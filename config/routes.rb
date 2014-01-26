@@ -6,6 +6,7 @@ GadgetCollection::Application.routes.draw do
   root 'home#index'
 
   resources :users, only: [:new, :create, :show]
+  resources :sessions, only: [:new, :create, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
