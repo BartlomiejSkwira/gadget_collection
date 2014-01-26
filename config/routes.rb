@@ -3,10 +3,11 @@ GadgetCollection::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  root 'sessions#new'
 
   resources :users, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
+  get "log_out" => "sessions#destroy", :as => "log_out"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
