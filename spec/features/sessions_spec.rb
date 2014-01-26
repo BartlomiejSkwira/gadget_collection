@@ -9,22 +9,22 @@ feature "User sessions" do
     visit root_path
     click_link 'Login'
     within("#session") do
-      fill_in 'Login', :with => 'user@example.com'
+      fill_in 'Email', :with => 'user@example.com'
       fill_in 'Password', :with => 'applift'
     end
-    click_link 'Sign in'
-    expect(page).to have_content 'Signed in successfully'
+    click_on 'Sign in'
+    expect(page).to have_content @user.email
   end
 
   scenario "Signing out with correct credentials" do
     visit new_session_path
     within("#session") do
-      fill_in 'Login', :with => 'user@example.com'
+      fill_in 'Email', :with => 'user@example.com'
       fill_in 'Password', :with => 'applift'
     end
-    click_link 'Sign in'
+    click_on 'Sign in'
     click_link 'Sign out'
-    expect(page).to have_content 'Signed out successfully'
+    expect(page).not_to have_content @user.email
   end
 
 end
