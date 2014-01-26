@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
+gem 'pg', '~> 0.17.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -43,3 +44,10 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+end
+
+gem "haml-rails"
