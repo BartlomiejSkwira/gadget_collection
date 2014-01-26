@@ -50,4 +50,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
 end
 
+group :test do
+  gem 'capybara', '~> 2.1.0'
+end
+
 gem "haml-rails"
