@@ -10,7 +10,7 @@ feature "Users" do
         fill_in 'Password', :with => 'applift'
         fill_in 'Password confirmation', :with => 'applift'
       end
-      click_link 'Sign up'
+      click_on 'Sign up'
     }.to change{User.count}.by(1)
     expect(page).to have_content 'Account successfully created'
   end

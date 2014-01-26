@@ -1,16 +1,17 @@
-%h1 Create new user
+#user
+  %h1 Create new user
 
-= form_for @user do |f|
-  = f.label :email
-  = f.email_field :email
-  %br/
-  = f.label :password
-  = f.password_field :password
-  %br/
-  = f.label :password_confirmation
-  = f.password_field :password_confirmation
-  %br/
+  = form_for @user do |f|
+    = f.label :email
+    = f.email_field :email
+    %br/
+    = f.label :password
+    = f.password_field :password
+    %br/
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    %br/
 
-  = f.submit 'Create account'
+    = f.submit 'Sign up'
 
 
