@@ -1,6 +1,5 @@
 require_relative '../spec_helper'
 
-
 feature "User sessions" do
   background do
     @user = create :user
