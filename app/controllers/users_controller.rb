@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:remember_token] = @user.remember_token
       redirect_to @user, notice: 'Account successfully created'
     else
       render 'new'
@@ -19,6 +20,6 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :password, :password_confirmation, :remember_token)
     end
 end
