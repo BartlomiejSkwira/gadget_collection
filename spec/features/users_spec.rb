@@ -6,7 +6,7 @@ feature "Users" do
     visit new_user_path
     expect {
       within("#user") do
-        fill_in 'email', :with => 'user@example.com'
+        fill_in 'Email', :with => 'user@example.com'
         fill_in 'Password', :with => 'applift'
         fill_in 'Password confirmation', :with => 'applift'
       end
