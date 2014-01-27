@@ -19,12 +19,7 @@ I can" do
   end
 
   scenario "sign out" do
-    visit new_session_path
-    within("#session") do
-      fill_in 'Email', :with => 'user@example.com'
-      fill_in 'Password', :with => 'applift'
-    end
-    click_on 'Sign in'
+    sign_in @user
     click_link 'Sign out'
     expect(page).not_to have_content @user.email
   end
