@@ -9,7 +9,7 @@ I can' do
     @user = create :user
     3.times { create(:gadget, user: @user) }
     sign_in @user
-    visit user_gadgets_path(@user)
+    click 'Gadgets'
   end
 
   scenario 'see a list of gadgets' do
