@@ -55,4 +55,5 @@ group :test do
   gem 'factory_girl_rails'
 end
 
-gem "haml-rails"
+gem "haml-rails", '~> 0.5.3'
+gem 'carrierwave', '~> 0.9.0'
