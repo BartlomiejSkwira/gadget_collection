@@ -1,0 +1,10 @@
+%h1
+  User
+  = @user.email
+  gadgets
+
+%ul
+  - @user.gadgets.each do |gadget|
+    %li=link_to gadget.name, '#'
+
+

@@ -13,7 +13,7 @@ I can' do
   end
 
   scenario 'see a list of gadgets' do
-    @user.gadets.each do |gadget|
+    @user.gadgets.each do |gadget|
       page.should have_content gadget.name
     end
   end
