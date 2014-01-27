@@ -7,15 +7,26 @@ I can' do
 
   background do
     @user = create :user
-    3.times { create(:gadget, user: @user) }
+    @gadgets = []
+    3.times { @gadgets << create(:gadget, user: @user) }
     sign_in @user
     click_link 'Gadgets'
   end
 
   scenario 'see a list of gadgets' do
-    @user.gadgets.each do |gadget|
+    @gadgets.each do |gadget|
       page.should have_content gadget.name
     end
+  end
+
+  scenario 'upload gadget images' do
+    click_link @gadgets.first.name
+    page.should have_content @gadgets.first.name
+    expect {
+      click_on 'Upload'
+      attach_file('foobar_attachment', "#{Rails.root}/features/fixtures/test.jpg")
+      click_button 'Submit'
+    }.to change{@gadets.reload.images.count}.by(1)
   end
 
 end
