@@ -5,8 +5,8 @@ describe GadgetImagesUploader do
 
   before do
     GadgetImagesUploader.enable_processing = true
-    @uploader = GadgetImagesUploader.new(@user, :avatar)
-    path_to_file = "#{Rails.root}/features/fixtures/test.jpg"
+    @uploader = GadgetImagesUploader.new(@image, :file)
+    path_to_file = "#{Rails.root}/spec/features/fixtures/test.jpeg"
     @uploader.store!(File.open(path_to_file))
   end
 
