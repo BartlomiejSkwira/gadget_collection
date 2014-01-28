@@ -22,6 +22,7 @@ I can' do
   scenario 'upload gadget images' do
     click_link @gadgets.first.name
     page.should have_content @gadgets.first.name
+    page.should_not have_content @gadgets[1].name
     expect {
       click_on 'Upload'
       attach_file('foobar_attachment', "#{Rails.root}/features/fixtures/test.jpg")
