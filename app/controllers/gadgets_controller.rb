@@ -9,7 +9,8 @@ class GadgetsController < ApplicationController
 
   def edit
     if params[:id]
-      @gadet = Gadget.find(params[:id])
+      @user = User.find(params[:user_id])
+      @gadget = Gadget.find(params[:id])
     end
   end
 end
