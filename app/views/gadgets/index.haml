@@ -5,6 +5,6 @@
 
 %ul
   - @user.gadgets.each do |gadget|
-    %li=link_to gadget.name, '#'
+    %li=link_to gadget.name, edit_user_gadget_path(gadget, user_id: @user.id)
 
 

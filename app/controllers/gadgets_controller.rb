@@ -6,4 +6,10 @@ class GadgetsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def edit
+    if params[:id]
+      @gadet = Gadget.find(params[:id])
+    end
+  end
 end
