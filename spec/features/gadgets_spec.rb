@@ -27,7 +27,10 @@ I can' do
       click_on 'Upload'
       attach_file('foobar_attachment', "#{Rails.root}/features/fixtures/test.jpg")
       click_button 'Submit'
-    }.to change{@gadets.reload.images.count}.by(1)
+      click_on 'Upload'
+      attach_file('foobar_attachment', "#{Rails.root}/features/fixtures/test.jpg")
+      click_button 'Submit'
+    }.to change{@gadets.reload.images.count}.by(2)
   end
 
 end
