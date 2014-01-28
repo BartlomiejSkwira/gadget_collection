@@ -5,35 +5,35 @@ describe GadgetImagesUploader do
 
   before do
     GadgetImagesUploader.enable_processing = true
-    @uploader = GadgetImagesUploader.new(@image, :file)
+    @image = create(:image)
     path_to_file = "#{Rails.root}/spec/features/fixtures/test.jpeg"
-    @uploader.store!(File.open(path_to_file))
+    @image.file = File.open(path_to_file)
   end
 
   after do
     GadgetImagesUploader.enable_processing = false
-    @uploader.remove!
+    @image.file.remove!
   end
 
   context 'the thumb version' do
     it "should scale down a landscape image to be exactly 64 by 64 pixels" do
-      @uploader.thumb.should have_dimensions(64, 64)
+      @image.file.thumb.should have_dimensions(64, 64)
     end
   end
 
   context 'the small version' do
     it "should scale down a landscape image to fit within 200 by 200 pixels" do
-      @uploader.small.should be_no_larger_than(200, 200)
+      @image.file.small.should be_no_larger_than(200, 200)
     end
   end
 
   context 'the middle version' do
-    it "should scale down a landscape image to fit within 200 by 200 pixels" do
-      @uploader.small.should be_no_larger_than(400, 400)
+    it "should scale down a landscape image to fit within 400 by 400 pixels" do
+      @image.file.middle.should be_no_larger_than(400, 400)
     end
   end
 
   it "should make the image readable only to the owner and not executable" do
-    @uploader.should have_permissions(0600)
+    @image.file.should have_permissions(0600)
   end
 end
