@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
   def new
+    if signed_in?
+      user = User.find_by_remember_token(session[:remember_token])
+      redirect_to user_path(user)
+    end
   end
 
   def create
