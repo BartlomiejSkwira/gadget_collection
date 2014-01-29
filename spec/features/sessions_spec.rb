@@ -19,7 +19,7 @@ I can" do
   end
 
   scenario "sign out" do
-    sign_in @user
+    sign_in_user @user
     click_link 'Sign out'
     expect(page).not_to have_content @user.email
   end

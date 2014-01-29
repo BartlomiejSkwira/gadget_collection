@@ -20,5 +20,13 @@ describe SessionsController do
       post :create, session: session_param
       expect(response).to render_template("new")
     end
+
+    it "create session" do
+      user = create(:user)
+      session_param = { email: user.email, password: 'applift' }
+      post :create, session: session_param
+      expect(response).not_to render_template("new")
+      expect(response).to redirect_to("/users/#{user.id}")
+    end
   end
 end
