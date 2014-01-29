@@ -26,9 +26,10 @@ I can' do
     page.should_not have_content @gadgets[1].name
     expect {
       click_link 'Upload'
-      attach_file('image-attachment', "#{Rails.root}/spec/features/fixtures/test.jpeg")
+      first_id = all('.image-attachment')[0]['id']
+      attach_file(first_id, "#{Rails.root}/spec/features/fixtures/test.jpeg")
       click_on 'Upload'
-      second_id = all('[name="image-attachment"]')[1]['id']
+      second_id = all('.image-attachment')[1]['id']
       attach_file(second_id, "#{Rails.root}/spec/features/fixtures/test.jpeg")
       click_on 'Save'
     }.to change{@gadgets.first.reload.images.count}.by(2)
@@ -38,7 +39,8 @@ I can' do
     click_link 'Create gadget'
     fill_in 'Name', with: 'Funky thing'
     click_link 'Upload'
-    attach_file('image-attachment', "#{Rails.root}/spec/features/fixtures/test.jpeg")
+    first_id = all('.image-attachment')[0]['id']
+    attach_file(first_id, "#{Rails.root}/spec/features/fixtures/test.jpeg")
     expect {
       click_on 'Save'
     }.to change{Gadget.count}.by(1)
