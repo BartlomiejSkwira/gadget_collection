@@ -24,6 +24,13 @@ class GadgetsController < ApplicationController
     end
   end
 
+  def new
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @gadget = @user.gadgets.new
+    end
+  end
+
   private
     def gadget_params
       params.require(:gadget).permit(:name, images_attributes: [:id, :file, :_destroy])
