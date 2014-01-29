@@ -34,4 +34,14 @@ I can' do
     }.to change{@gadgets.first.reload.images.count}.by(2)
   end
 
+  scenario 'create a new gadget' do
+    click_link 'Create gadget'
+    fill_in 'Name', with: 'Funky thing'
+    click_link 'Upload'
+    attach_file('image-attachment', "#{Rails.root}/spec/features/fixtures/test.jpeg")
+    expect {
+      click_on 'Save'
+    }.to change{Gadget.count}.by(1)
+  end
+
 end
