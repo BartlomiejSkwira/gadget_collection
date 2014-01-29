@@ -13,4 +13,19 @@ class GadgetsController < ApplicationController
       @gadget = Gadget.find(params[:id])
     end
   end
+
+  def update
+    @user = User.find(params[:user_id])
+    @gadget = Gadget.find(params[:id])
+    if @gadget.update(gadget_params)
+      redirect_to user_gadgets_path
+    else
+      render 'edit'
+    end
+  end
+
+  private
+    def gadget_params
+      params.require(:gadget).permit(:name, images_attributes: [:id, :file, :_destroy])
+    end
 end

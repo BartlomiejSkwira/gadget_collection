@@ -6,7 +6,7 @@ GadgetCollection::Application.routes.draw do
   root 'sessions#new'
 
   resources :users, only: [:new, :create, :show] do
-    resources :gadgets, only: [:index, :edit]
+    resources :gadgets, only: [:index, :edit, :update]
   end
   resources :sessions, only: [:new, :create, :destroy]
   get "log_out" => "sessions#destroy", :as => "log_out"
