@@ -31,6 +31,16 @@ class GadgetsController < ApplicationController
     end
   end
 
+  def create
+    @user = User.find(params[:user_id])
+    @gadget = @user.gadgets.new(gadget_params)
+    if @gadget.save
+      redirect_to user_gadgets_path
+    else
+      render 'new'
+    end
+  end
+
   private
     def gadget_params
       params.require(:gadget).permit(:name, images_attributes: [:id, :file, :_destroy])
