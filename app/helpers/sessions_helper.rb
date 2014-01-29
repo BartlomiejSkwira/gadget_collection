@@ -10,7 +10,7 @@ module SessionsHelper
   def sign_out user
     current_user.update_attribute(:remember_token, User.new_remember_token)
     session[:remember_token] = nil
-    current_user= nil
+    self.current_user= nil
   end
 
   def current_user=(user)
@@ -19,7 +19,7 @@ module SessionsHelper
 
   def current_user
     remember_token = session[:remember_token]
-    @current_user ||= User.find_by(remember_token: remember_token)
+    @current_user ||= User.find_by(remember_token: remember_token) if remember_token
   end
 
   def signed_in?
