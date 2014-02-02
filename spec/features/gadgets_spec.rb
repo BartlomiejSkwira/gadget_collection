@@ -49,9 +49,20 @@ I can' do
   scenario 'see a cover flow container for images' do
     visit edit_user_gadget_path(@gadgets.first, user_id: @user.id)
     page.should_not have_css('#player')
-    image = create(:image, gadget: @gadgets.first)
-    image2 = create(:image, gadget: @gadgets.first)
+    create(:image, gadget: @gadgets.first)
+    create(:image, gadget: @gadgets.first)
     visit edit_user_gadget_path(@gadgets.first, user_id: @user.id)
     page.should have_css('#player')
+  end
+
+  scenario 'see different sizes of same photo' do
+    create(:image, gadget: @gadgets.first)
+    visit edit_user_gadget_path(@gadgets.first, user_id: @user.id)
+    page.should have_link 'Thumb'
+    page.should have_link 'Small'
+    page.should have_link 'Middle'
+    click_link 'Thumb'
+    page.driver.browser.window_handles.size.should == 2
+
   end
 end
