@@ -10,10 +10,13 @@
 
 <% if signed_in? %>
   <%= link_to 'Sign out', log_out_path %>
+  <%= link_to 'Profile', user_path(@user) %>
+  <%= link_to 'Gadgets', user_gadgets_path(@user) %>
 <% else %>
   <%= link_to 'Login', new_session_path %>
   <%= link_to 'Sign up', new_user_path %>
 <% end %>
+<hr/>
 
 <%= yield %>
 

@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery_nested_form
+//= require coverflow
+
+loadCoverFlow = function() {
+  coverflow('player').setup({
+    flash: 'coverflow.swf',
+    playlist: "http://localhost:3000/users/" + user_id + "/gadgets/" + id + "/playlist",
+    width: 460,
+    height: 240
+  });
+};

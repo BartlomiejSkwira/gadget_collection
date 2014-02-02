@@ -1,13 +1,10 @@
 class User < ActiveRecord::Base
   has_secure_password
   before_create :create_remember_token
+  has_many :gadgets, dependent: :destroy
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
-  end
-
-  def User.encrypt(token)
-    Digest::SHA1.hexdigest(token.to_s)
   end
 
   private

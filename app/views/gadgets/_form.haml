@@ -1,0 +1,23 @@
+%h1 Edit gadget
+
+= nested_form_for [@user, @gadget] do |f|
+  = f.label :name
+  = f.text_field :name
+
+  = f.fields_for :images do |image_form|
+    - image = image_form.object
+    = image_tag(image.file.thumb.url, class: 'image-thumb') if image_form.object.file?
+    = image_form.file_field :file, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: 'image-attachment'
+    = image_form.link_to_remove "Remove this image"
+    = link_to image.file.thumb.url, target: '_blank' do
+      Thumb
+    = link_to image.file.small.url, target: '_blank' do
+      Small
+    = link_to image.file.middle.url, target: '_blank' do
+      Middle
+
+  %p
+    = f.link_to_add "Upload", :images
+
+  = f.submit 'Save'
+

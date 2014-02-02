@@ -1,0 +1,13 @@
+%h1
+  User
+  = @user.email
+  gadgets
+
+%ul
+  - @user.gadgets.each do |gadget|
+    %li=link_to gadget.name, edit_user_gadget_path(gadget, user_id: @user.id)
+
+%br/
+= link_to 'Create gadget', new_user_gadget_path(@user)
+
+

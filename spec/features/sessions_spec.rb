@@ -1,11 +1,13 @@
 require_relative '../spec_helper'
 
-feature "User sessions" do
+feature "User sessions,
+as a user,
+I can" do
   background do
     @user = create :user
   end
 
-  scenario "Signing in with correct credentials" do
+  scenario "sign in with correct credentials" do
     visit root_path
     click_link 'Login'
     within("#session") do
@@ -16,13 +18,8 @@ feature "User sessions" do
     expect(page).to have_content @user.email
   end
 
-  scenario "Signing out with correct credentials" do
-    visit new_session_path
-    within("#session") do
-      fill_in 'Email', :with => 'user@example.com'
-      fill_in 'Password', :with => 'applift'
-    end
-    click_on 'Sign in'
+  scenario "sign out" do
+    sign_in_user @user
     click_link 'Sign out'
     expect(page).not_to have_content @user.email
   end
