@@ -17,14 +17,11 @@
 //= require jquery_nested_form
 //= require coverflow
 
-jQuery(function(){
-  console.log(id);
-  console.log(user_id);
+loadCoverFlow = function() {
   coverflow('player').setup({
     flash: 'coverflow.swf',
     playlist: "http://localhost:3000/users/" + user_id + "/gadgets/" + id + "/playlist",
     width: 460,
     height: 240
   });
-
-});
+};

@@ -5,8 +5,8 @@
   = f.text_field :name
 
   = f.fields_for :images do |image_form|
-    = image_tag(image_form.object.file.thumb.url) if image_form.object.file?
-    = image_form.file_field :file, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: 'image-attachment'
+    = image_tag(image_form.object.file.thumb.url, class: 'image-thumb') if image_form.object.file?
+    = image_form.file_field :file, accept: 'image/png,image/gif,image/jpeg,image/jpg'
     = image_form.link_to_remove "Remove this image"
 
   %p
