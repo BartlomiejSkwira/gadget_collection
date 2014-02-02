@@ -20,7 +20,7 @@ I can' do
     end
   end
 
-  scenario 'upload gadget images' do
+  scenario 'edit/upload gadget images' do
     click_link @gadgets.first.name
     page.should have_field 'Name', with: @gadgets.first.name
     page.should_not have_content @gadgets[1].name
@@ -46,4 +46,12 @@ I can' do
     }.to change{Gadget.count}.by(1)
   end
 
+  scenario 'see a cover flow container for images' do
+    visit edit_user_gadget_path(@gadgets.first, user_id: @user.id)
+    page.should_not have_css('#player')
+    image = create(:image, gadget: @gadgets.first)
+    image2 = create(:image, gadget: @gadgets.first)
+    visit edit_user_gadget_path(@gadgets.first, user_id: @user.id)
+    page.should have_css('#player')
+  end
 end
