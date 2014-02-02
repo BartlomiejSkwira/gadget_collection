@@ -1,1 +1,11 @@
 =render 'form'
+
+- if @gadget.images.present?
+  %br/
+  Saved pictures cover flow:
+  %br/
+  #player
+
+  :javascript
+    window.user_id = #{ @user.id } ;
+    window.id = #{ @gadget.id } ;
