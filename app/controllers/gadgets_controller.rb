@@ -41,6 +41,15 @@ class GadgetsController < ApplicationController
     end
   end
 
+  def playlist
+    if params[:id]
+      gadget = Gadget.find(params[:id])
+      playlist = gadget.images.map(){ |image| { title: image.file_name,
+                                     image: image.file.url } }
+      render json: playlist
+    end
+  end
+
   private
     def gadget_params
       params.require(:gadget).permit(:name, images_attributes: [:id, :file, :_destroy])
