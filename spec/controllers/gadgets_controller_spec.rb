@@ -1,13 +1,20 @@
 require_relative '../spec_helper'
 
 describe GadgetsController do
-  #rspec can't test a nested controller without passing a user_id - which is exactly want we don't want to do here
-  #describe "GET index" do
-    #it "redirect to root when no user_id param" do
-      #get :index
-      #expect(response).to redirect_to(root_path)
-    #end
-  #end
+  describe "GET index" do
+    it "redirect to root user_id is empty" do
+      get :index, user_id: ''
+      expect(response).to redirect_to(root_path)
+    end
+  end
+
+  describe "GET index" do
+    it "throw route exception when no user_id param" do
+      expect {
+        get :index, user_id: nil
+      }.to raise_error
+    end
+  end
 
   describe "GET playlist" do
     it "return a list of images in json" do
